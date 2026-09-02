@@ -72,3 +72,5 @@ poetry check --lock
 - Before editing, check `git status --short` and preserve unrelated user changes.
 - Do not delete or revert existing notebook edits unless the user explicitly asks.
 - Keep changes scoped; this repo is intentionally small.
+- Use Conventional Commits for commit and PR titles, with short imperative descriptions. Release notes derive from squash titles; use accurate user-facing types such as `feat`, `fix`, `perf`, `docs`, `fix(security)`, and dependency `build(deps)` or `chore(deps)`.
+- End commit messages and PR descriptions with `Assisted-by: <AI model> <version>` after a blank line, using the actual model.
