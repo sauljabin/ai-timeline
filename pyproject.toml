@@ -10,6 +10,7 @@ dependencies = [
     "jupyter-book>=2.1.6,<3.0.0",
     "jupyterlab>=4.6.3,<5.0.0",
     "pillow>=12.3.0,<13.0.0",
+    "pygame-ce>=2.5.8,<3.0.0",
     "pyswip>=0.3.3,<0.4.0",
 ]
 

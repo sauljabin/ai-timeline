@@ -1,4 +1,5 @@
 def build_membership_svg(cold_temperature, warm_temperature, hot_temperature):
+    # Keep layout values together so the plotting area is derived consistently.
     width = 720
     height = 420
     margin_left = 58
@@ -8,6 +9,7 @@ def build_membership_svg(cold_temperature, warm_temperature, hot_temperature):
     plot_width = width - margin_left - margin_right
     plot_height = height - margin_top - margin_bottom
 
+    # Convert data coordinates into SVG pixel coordinates; SVG y values grow downward.
     def x_scale(value):
         return margin_left + (value / 44) * plot_width
 
@@ -20,12 +22,14 @@ def build_membership_svg(cold_temperature, warm_temperature, hot_temperature):
             for value in range(45)
         )
 
+    # A shared series table drives both the curves and their legend entries.
     series = [
         ("Cold", "#2f6f9f", cold_temperature),
         ("Warm", "#c56b2c", warm_temperature),
         ("Hot", "#b23a48", hot_temperature),
     ]
 
+    # Horizontal guides make membership values easier to estimate visually.
     grid_lines = []
     for tick in [0, 0.25, 0.5, 0.75, 1.0]:
         y = y_scale(tick)
@@ -36,6 +40,7 @@ def build_membership_svg(cold_temperature, warm_temperature, hot_temperature):
             f'<text x="{margin_left - 12}" y="{y + 4:.1f}" text-anchor="end" font-size="12" fill="#4b5563">{tick:.2g}</text>'
         )
 
+    # Temperature ticks label the input domain used by the notebook example.
     x_ticks = []
     for tick in [0, 10, 20, 30, 40]:
         x = x_scale(tick)
@@ -46,6 +51,7 @@ def build_membership_svg(cold_temperature, warm_temperature, hot_temperature):
             f'<text x="{x:.1f}" y="{height - margin_bottom + 24}" text-anchor="middle" font-size="12" fill="#4b5563">{tick}</text>'
         )
 
+    # Sample each membership function and assemble matching legend swatches.
     polylines = []
     legend = []
     for index, (label, color, function) in enumerate(series):
@@ -61,6 +67,7 @@ def build_membership_svg(cold_temperature, warm_temperature, hot_temperature):
             f'<text x="{legend_x + 32}" y="{legend_y + 4}" font-size="13" fill="#111827">{label}</text>'
         )
 
+    # Returning SVG text avoids a heavyweight plotting dependency and stays deterministic.
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="Fuzzy temperature membership functions">
   <rect width="100%" height="100%" fill="#ffffff" />
   <text x="{width / 2}" y="22" text-anchor="middle" font-size="18" font-weight="700" fill="#111827">Temperature Membership Functions</text>

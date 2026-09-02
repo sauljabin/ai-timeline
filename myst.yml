@@ -14,6 +14,7 @@ project:
       children:
         - file: notebooks/1957-perceptron.ipynb
         - file: notebooks/1965-fuzzy-logic.ipynb
+        - file: notebooks/1970-conways-game-of-life.ipynb
         - file: notebooks/1972-prolog.ipynb
         - file: notebooks/1975-genetic-algorithms.ipynb
         - file: notebooks/1986-backpropagation.ipynb
