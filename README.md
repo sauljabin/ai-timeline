@@ -20,6 +20,18 @@ Install dependencies with Poetry:
 poetry install
 ```
 
+Install the Git hooks:
+
+```sh
+poetry run pre-commit install
+```
+
+The pre-commit hook executes every notebook and saves deterministic outputs. It removes execution timestamps and interpreter-version metadata so rerunning unchanged notebooks does not produce metadata-only diffs. Run it manually with:
+
+```sh
+poetry run pre-commit run --all-files
+```
+
 Launch JupyterLab:
 
 ```sh

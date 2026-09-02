@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: execute-notebooks
+        name: execute notebooks
+        entry: poetry run python scripts/execute_notebooks.py
+        language: system
+        pass_filenames: false
+        files: '^(notebooks/.*\.(ipynb|py)|scripts/execute_notebooks\.py|pyproject\.toml|poetry\.lock)$'

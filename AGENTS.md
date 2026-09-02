@@ -30,6 +30,13 @@ Run Python scripts through Poetry when possible:
 poetry run python notebooks/fuzzy_logic_plot.py
 ```
 
+Install and run the repository's pre-commit hooks through Poetry:
+
+```sh
+poetry run pre-commit install
+poetry run pre-commit run --all-files
+```
+
 ## Dependency Changes
 
 - Add runtime notebook dependencies to the `[project] dependencies` list in `pyproject.toml`.
@@ -52,6 +59,7 @@ poetry check --lock
 - Keep generated checkpoint files out of commits; `.ipynb_checkpoints/` is ignored.
 - Keep notebook helper code small and local unless a repeated pattern clearly needs extraction.
 - If adding plots or deterministic examples, prefer reproducible code cells and checked-in helper scripts over hidden manual state.
+- The pre-commit hook executes all notebooks, saves their outputs, and removes volatile execution timestamps and interpreter-version metadata. Keep notebook outputs deterministic so a second hook run is clean.
 - Keep notebooks standardized around this structure:
 
 ```text
