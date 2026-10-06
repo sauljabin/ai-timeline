@@ -1,9 +1,9 @@
 repos:
   - repo: local
     hooks:
-      - id: execute-notebooks
-        name: execute notebooks
-        entry: poetry run python scripts/execute_notebooks.py
+      - id: build-site
+        name: build site (runs every chapter and widget test)
+        entry: poetry run python scripts/build_site.py
         language: system
         pass_filenames: false
-        files: '^(notebooks/.*\.(ipynb|py)|scripts/execute_notebooks\.py|pyproject\.toml|poetry\.lock)$'
+        files: '^(chapters/|widgets/|scripts/build_site\.py|index\.md|myst\.yml|pyproject\.toml|poetry\.lock|\.python-version)'

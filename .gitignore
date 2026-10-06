@@ -220,3 +220,6 @@ __marimo__/
 
 # MyST build outputs
 _build
+
+# Widget data written by the chapters at build time
+widgets/data/

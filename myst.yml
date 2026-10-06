@@ -1,23 +1,26 @@
 version: 1
 
 project:
-  title: AI Timeline Notebook
-  description: Jupyter notebooks for the history of AI.
+  title: AI Timeline
+  description: Runnable, checked examples from the history of artificial intelligence.
   keywords:
     - artificial intelligence
     - history
-    - jupyter
-    - notebooks
+    - teaching
+  github: https://github.com/sauljabin/ai-timeline-notebook
   toc:
-    - file: README.md
-    - title: Notebooks
+    - file: index.md
+    - title: Timeline
       children:
-        - file: notebooks/1957-perceptron.ipynb
-        - file: notebooks/1965-fuzzy-logic.ipynb
-        - file: notebooks/1970-conways-game-of-life.ipynb
-        - file: notebooks/1972-prolog.ipynb
-        - file: notebooks/1975-genetic-algorithms.ipynb
-        - file: notebooks/1986-backpropagation.ipynb
+        - file: chapters/1957-perceptron.md
+        - file: chapters/1965-fuzzy-logic.md
+        - file: chapters/1970-conways-game-of-life.md
+        - file: chapters/1972-prolog.md
+        - file: chapters/1975-genetic-algorithms.md
+        - file: chapters/1986-backpropagation.md
 
 site:
   template: book-theme
+  options:
+    logo_text: AI Timeline
+    style: assets/site.css

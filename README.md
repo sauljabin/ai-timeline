@@ -1,58 +1,70 @@
 # ai-timeline-notebook
 
-Jupyter notebooks for the history of AI.
+AI Timeline is a free website that teaches the history of artificial intelligence by running it. Each chapter takes one milestone, such as the perceptron of 1957 or backpropagation in 1986, explains the idea in plain language, and runs a small working version in Python. The site is published at <https://sauljabin.github.io/ai-timeline-notebook/>.
 
-## Notebooks
+## What This Is
 
-This project has 6 notebooks:
+The site is for curious readers who want to see how AI ideas actually work, not only read about them. You need no AI background. Reading the Python code helps, but every chapter explains its ideas in words and pictures first.
 
-- [1957 Perceptron](notebooks/1957-perceptron.ipynb): single-layer perceptron examples for the `AND` and `OR` logic gates.
-- [1965 Fuzzy Logic](notebooks/1965-fuzzy-logic.ipynb): fuzzy set membership, rule-based inference, and a fan-speed controller example with a plotted graph.
-- [1970 Conway's Game of Life](notebooks/1970-conways-game-of-life.ipynb): cellular automata, emergent behavior, simulations of a blinker and glider, and an interactive desktop window.
-- [1972 Prolog](notebooks/1972-prolog.ipynb): family-tree facts, rules, recursive ancestors, and PySwip queries.
-- [1975 Genetic Algorithms](notebooks/1975-genetic-algorithms.ipynb): evolutionary search with fitness, selection, crossover, and mutation over a small knapsack packing problem.
-- [1986 Backpropagation](notebooks/1986-backpropagation.ipynb): multilayer perceptron training with backpropagation for the `XOR` logic gate.
+Every chapter has the same parts:
+
+1. The idea, explained with one concrete example and real numbers.
+2. Short Python code that runs the idea, with its real output.
+3. An interactive panel that animates the idea: training a network, evolving a population, searching for a proof.
+4. Why the idea mattered, how this version differs from the original, and the primary sources.
+
+## Chapters
+
+| Year | Chapter |
+| --- | --- |
+| 1957 | [Perceptron](chapters/1957-perceptron.md): a single neuron learns `AND` and `OR`, and cannot learn `XOR`. |
+| 1965 | [Fuzzy logic](chapters/1965-fuzzy-logic.md): fuzzy sets and a fan-speed controller. |
+| 1970 | [Conway's Game of Life](chapters/1970-conways-game-of-life.md): rules, famous patterns, and a live board. |
+| 1972 | [Prolog](chapters/1972-prolog.md): facts, rules, queries, search trees, and how statement order changes the search. |
+| 1975 | [Genetic algorithms](chapters/1975-genetic-algorithms.md): a 30-item knapsack, checked against the exact answer and random search. |
+| 1986 | [Backpropagation](chapters/1986-backpropagation.md): one training step in slow motion, XOR training replay, and a live digit reader. |
+
+## How the site is checked
+
+Chapters are [MyST Markdown](https://mystmd.org) pages built with [Jupyter Book](https://jupyterbook.org). `scripts/build_site.py` does five things, in order:
+
+1. Checks that every line of code shown on the site is at most 79 characters, so it fits the page column.
+2. Deletes the previous build and the widget data.
+3. Builds the site. This runs every code cell, and a failing cell, such as a failed `assert`, stops the build. The chapters' code also writes the data the widgets use to `widgets/data/`.
+4. Runs `node --test widgets/tests`. The tests check that the widgets' JavaScript copies of the algorithms give the same results as the Python code.
+5. Copies `widgets/` into the built site.
+
+Each widget either replays data the Python code recorded or runs one of those tested JavaScript copies.
 
 ## Setup
 
-Install dependencies with Poetry:
+You need [Poetry](https://python-poetry.org), Python 3.14, Node.js 24 or newer, and [SWI-Prolog](https://www.swi-prolog.org/download/stable) (the Prolog chapter's runtime).
 
 ```sh
 poetry install
-```
-
-Install the Git hooks:
-
-```sh
 poetry run pre-commit install
 ```
 
-The pre-commit hook executes every notebook and saves deterministic outputs. It removes execution timestamps and interpreter-version metadata so rerunning unchanged notebooks does not produce metadata-only diffs. Run it manually with:
+The pre-commit hook runs the full build when chapters, widgets, or dependencies change.
+
+## Build and preview the site
 
 ```sh
-poetry run pre-commit run --all-files
+poetry run python scripts/build_site.py
 ```
-
-Launch JupyterLab:
 
 ```sh
-poetry run jupyter lab
+python3 -m http.server 8000 --directory _build/html
 ```
 
-Run Jupyter Book website:
+Then open <http://localhost:8000>.
 
-```sh
-poetry run jupyter book start
-```
+`jupyter book start` does not copy `widgets/` into the site, so the interactive panels do not load there. Use the build script instead.
 
-Build the notebooks as a Jupyter Book website:
+## Publishing
 
-```sh
-poetry run jupyter book build --html
-```
-
-The book structure is configured in `myst.yml`, with this README as the opening page and the notebooks listed in historical order.
+`.github/workflows/site.yml` builds the site on every push and pull request. Pushes to `main` also deploy it to GitHub Pages. In the repository settings, set **Pages → Source** to **GitHub Actions**.
 
 ## AI Assistance
 
-This project was created with AI-assisted development using OpenAI Codex powered by GPT-5.
+This project was developed with AI assistance.

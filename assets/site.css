@@ -1,0 +1,8 @@
+/* Site-wide additions to the book theme. */
+
+/* Long lines of printed output wrap instead of scrolling sideways. */
+.myst-jp-stream-output,
+.myst-jp-stream-output pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

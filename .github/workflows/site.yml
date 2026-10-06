@@ -1,0 +1,62 @@
+name: Site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version-file: .python-version
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      # The Prolog chapter needs the real SWI-Prolog runtime; PySwip only connects to it.
+      - name: Install SWI-Prolog
+        run: sudo apt-get update && sudo apt-get install --yes swi-prolog-nox
+
+      - name: Install Poetry
+        run: pipx install poetry
+
+      - name: Install dependencies
+        run: poetry install --no-interaction
+
+      # Runs every chapter from scratch, fails on any error, and tests the widgets.
+      - name: Build site
+        run: poetry run python scripts/build_site.py
+        env:
+          BASE_URL: /${{ github.event.repository.name }}
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _build/html
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
