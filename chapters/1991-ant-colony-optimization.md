@@ -148,7 +148,7 @@ data_directory.mkdir(parents=True, exist_ok=True)
 { "data": "ant-bridge.json" }
 ```
 
-The code that runs this panel is in [chapters/1991-ant-colony-optimization.md](https://github.com/sauljabin/ai-timeline-notebook/blob/main/chapters/1991-ant-colony-optimization.md).
+The code that runs this panel is in [chapters/1991-ant-colony-optimization.md](https://github.com/sauljabin/ai-timeline/blob/main/chapters/1991-ant-colony-optimization.md).
 
 ## Example: Ant System on 51 Cities
 
@@ -317,7 +317,7 @@ assert replay_best == best_length  # the same run as above
 { "data": "ant-tsp.json" }
 ```
 
-The code that runs this panel is in [chapters/1991-ant-colony-optimization.md](https://github.com/sauljabin/ai-timeline-notebook/blob/main/chapters/1991-ant-colony-optimization.md).
+The code that runs this panel is in [chapters/1991-ant-colony-optimization.md](https://github.com/sauljabin/ai-timeline/blob/main/chapters/1991-ant-colony-optimization.md).
 
 ## Why This Mattered
 

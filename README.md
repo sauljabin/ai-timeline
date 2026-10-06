@@ -1,6 +1,6 @@
-# ai-timeline-notebook
+# ai-timeline
 
-AI Timeline is a free website that teaches the history of artificial intelligence by running it. Each chapter takes one milestone, such as the perceptron of 1957 or backpropagation in 1986, explains the idea in plain language, and runs a small working version in Python. The site is published at <https://sauljabin.github.io/ai-timeline-notebook/>.
+AI Timeline is a free website that teaches the history of artificial intelligence by running it. Each chapter takes one milestone, such as the perceptron of 1957 or backpropagation in 1986, explains the idea in plain language, and runs a small working version in Python. The site is published at <https://sauljabin.github.io/ai-timeline/>.
 
 ## What This Is
 

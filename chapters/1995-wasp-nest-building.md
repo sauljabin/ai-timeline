@@ -235,7 +235,7 @@ In every run the colony stops inside the first comb, with 8 to 11 comb bricks, i
 { "data": "wasp-nest.json" }
 ```
 
-The code that runs this panel is in [chapters/1995-wasp-nest-building.md](https://github.com/sauljabin/ai-timeline-notebook/blob/main/chapters/1995-wasp-nest-building.md).
+The code that runs this panel is in [chapters/1995-wasp-nest-building.md](https://github.com/sauljabin/ai-timeline/blob/main/chapters/1995-wasp-nest-building.md).
 
 ## Why This Mattered
 

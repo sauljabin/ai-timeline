@@ -1,5 +1,5 @@
 [project]
-name = "ai-timeline-notebook"
+name = "ai-timeline"
 version = "0.1.0"
 description = "Runnable, checked examples from the history of AI, published as a website."
 readme = "README.md"

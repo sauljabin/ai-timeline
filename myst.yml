@@ -7,7 +7,7 @@ project:
     - artificial intelligence
     - history
     - teaching
-  github: https://github.com/sauljabin/ai-timeline-notebook
+  github: https://github.com/sauljabin/ai-timeline
   toc:
     - file: index.md
     - title: Timeline

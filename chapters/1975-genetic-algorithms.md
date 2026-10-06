@@ -211,7 +211,7 @@ data_directory.mkdir(parents=True, exist_ok=True)
 { "data": "ga-evolution.json" }
 ```
 
-The code that runs this panel is in [chapters/1975-genetic-algorithms.md](https://github.com/sauljabin/ai-timeline-notebook/blob/main/chapters/1975-genetic-algorithms.md).
+The code that runs this panel is in [chapters/1975-genetic-algorithms.md](https://github.com/sauljabin/ai-timeline/blob/main/chapters/1975-genetic-algorithms.md).
 
 ## Example: Is It Better Than Guessing?
 

@@ -177,7 +177,7 @@ data_directory.mkdir(parents=True, exist_ok=True)
 { "data": "prolog-tree.json" }
 ```
 
-The code that runs this panel is in [chapters/1972-prolog.md](https://github.com/sauljabin/ai-timeline-notebook/blob/main/chapters/1972-prolog.md) and [chapters/search_tree.pl](https://github.com/sauljabin/ai-timeline-notebook/blob/main/chapters/search_tree.pl), a small Prolog program that records the tree while searching in the same order as Prolog.
+The code that runs this panel is in [chapters/1972-prolog.md](https://github.com/sauljabin/ai-timeline/blob/main/chapters/1972-prolog.md) and [chapters/search_tree.pl](https://github.com/sauljabin/ai-timeline/blob/main/chapters/search_tree.pl), a small Prolog program that records the tree while searching in the same order as Prolog.
 
 In the `ancestor(Who, sally)` tree, the first branch uses the base rule on line 19 and finds `trude` and then `tom`, because the mother rule comes before the father rule. The second branch uses the recursive rule on line 21. It walks through every parent-child pair, and only the pair Mike and Tom leads to an answer: `mike`. The tree's other 22 leaves are dead ends, each a `mother_child` or `father_child` goal that matches no fact.
 

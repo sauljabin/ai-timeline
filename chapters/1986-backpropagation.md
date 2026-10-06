@@ -205,7 +205,7 @@ data_directory.mkdir(parents=True, exist_ok=True)
 { "data": "backprop-step.json" }
 ```
 
-The code that runs this panel is in [chapters/1986-backpropagation.md](https://github.com/sauljabin/ai-timeline-notebook/blob/main/chapters/1986-backpropagation.md).
+The code that runs this panel is in [chapters/1986-backpropagation.md](https://github.com/sauljabin/ai-timeline/blob/main/chapters/1986-backpropagation.md).
 
 ## Example: Training on XOR
 
@@ -327,7 +327,7 @@ In the animation, blue means positive and orange means negative. Line thickness 
 { "data": "xor-training.json" }
 ```
 
-The code that runs this panel is in [chapters/1986-backpropagation.md](https://github.com/sauljabin/ai-timeline-notebook/blob/main/chapters/1986-backpropagation.md).
+The code that runs this panel is in [chapters/1986-backpropagation.md](https://github.com/sauljabin/ai-timeline/blob/main/chapters/1986-backpropagation.md).
 
 ## Example: Not Every Start Works
 
@@ -531,7 +531,7 @@ check_images += [add_noise(pixels(pattern), 0.1, check_noise) for pattern in DIG
 { "data": "digit-reader.json" }
 ```
 
-The code that runs this panel is in [chapters/1986-backpropagation.md](https://github.com/sauljabin/ai-timeline-notebook/blob/main/chapters/1986-backpropagation.md).
+The code that runs this panel is in [chapters/1986-backpropagation.md](https://github.com/sauljabin/ai-timeline/blob/main/chapters/1986-backpropagation.md).
 
 ## Why This Mattered
 

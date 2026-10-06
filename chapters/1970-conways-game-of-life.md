@@ -377,7 +377,7 @@ Click or drag on the board to draw cells. Press **Play**, or move one generation
 { "data": "game-of-life-board.json" }
 ```
 
-The code that runs this panel is in [chapters/1970-conways-game-of-life.md](https://github.com/sauljabin/ai-timeline-notebook/blob/main/chapters/1970-conways-game-of-life.md).
+The code that runs this panel is in [chapters/1970-conways-game-of-life.md](https://github.com/sauljabin/ai-timeline/blob/main/chapters/1970-conways-game-of-life.md).
 
 ## Why This Mattered
 

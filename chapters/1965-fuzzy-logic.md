@@ -148,7 +148,7 @@ data_directory.mkdir(parents=True, exist_ok=True)
 {}
 ```
 
-The code that runs this panel is in [chapters/1965-fuzzy-logic.md](https://github.com/sauljabin/ai-timeline-notebook/blob/main/chapters/1965-fuzzy-logic.md).
+The code that runs this panel is in [chapters/1965-fuzzy-logic.md](https://github.com/sauljabin/ai-timeline/blob/main/chapters/1965-fuzzy-logic.md).
 
 ## Why This Mattered
 

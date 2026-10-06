@@ -19,4 +19,4 @@ You need no AI background. The code is short and commented, but every chapter ex
 
 ## Run It Yourself
 
-The code is on [GitHub](https://github.com/sauljabin/ai-timeline-notebook). The README there explains how to install it and rebuild this site on your own computer.
+The code is on [GitHub](https://github.com/sauljabin/ai-timeline). The README there explains how to install it and rebuild this site on your own computer.

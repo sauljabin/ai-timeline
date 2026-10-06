@@ -10,7 +10,7 @@
    algorithms against the data the Python code just wrote.
 5. Copy the widgets next to the built pages.
 
-Set BASE_URL (for example /ai-timeline-notebook) when the site is served
+Set BASE_URL (for example /ai-timeline) when the site is served
 from a sub-path, as on GitHub Pages.
 """
 
