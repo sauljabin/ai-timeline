@@ -23,7 +23,7 @@ poetry run pre-commit run --all-files
 poetry check --lock
 ```
 
-`scripts/build_site.py` checks that shown code lines are at most 79 characters, deletes old output, runs every chapter with `--strict` (any failing cell fails the build), runs `node --test widgets/tests`, and copies `widgets/` into `_build/html`. `jupyter book start` does not load widgets.
+`scripts/build_site.py` checks that shown code lines are at most 79 characters, deletes old output, runs every chapter with `--strict` (any failing cell fails the build), runs the tests in `widgets/tests` with `node --test`, and copies `widgets/` into `_build/html`. `jupyter book start` does not load widgets.
 
 If Poetry cannot write to its user cache while locking:
 

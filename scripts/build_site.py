@@ -83,7 +83,9 @@ def main():
             shutil.rmtree(directory)
 
     run([sys.executable, "-m", "jupyter", "book", "build", "--html", "--execute", "--strict"])
-    run(["node", "--test", str(WIDGET_DIRECTORY / "tests")])
+    # List the test files: Node 24 does not accept a folder here.
+    tests = sorted(str(path) for path in (WIDGET_DIRECTORY / "tests").glob("*.test.mjs"))
+    run(["node", "--test", *tests])
 
     shutil.copytree(
         WIDGET_DIRECTORY,

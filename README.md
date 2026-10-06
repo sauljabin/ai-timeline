@@ -33,7 +33,7 @@ Chapters are [MyST Markdown](https://mystmd.org) pages built with [Jupyter Book]
 1. Checks that every line of code shown on the site is at most 79 characters, so it fits the page column.
 2. Deletes the previous build and the widget data.
 3. Builds the site. This runs every code cell, and a failing cell, such as a failed `assert`, stops the build. The chapters' code also writes the data the widgets use to `widgets/data/`.
-4. Runs `node --test widgets/tests`. The tests check that the widgets' JavaScript copies of the algorithms give the same results as the Python code.
+4. Runs the tests in `widgets/tests` with `node --test`. The tests check that the widgets' JavaScript copies of the algorithms give the same results as the Python code.
 5. Copies `widgets/` into the built site.
 
 Each widget either replays data the Python code recorded or runs one of those tested JavaScript copies.
