@@ -223,3 +223,6 @@ _build
 
 # Widget data written by the chapters at build time
 widgets/data/
+
+# Local Claude Code settings
+.claude/
