@@ -62,6 +62,8 @@ print(f"Best possible value: {OPTIMUM}")
 
 The genetic algorithm writes a pack as 30 genes, one per item, where `1` means packed. A pack that is too heavy gets fitness 0, which gives the search nothing to improve. That is why `random_pack` includes each item with only a 15% chance; the measurement after the code shows the difference this makes.
 
+`evolve` runs the cycle from the start of this page with one addition: the best pack of each generation is copied unchanged into the next, so the best score never drops. This is called *elitism*.
+
 ```{code-cell} python
 import random
 
@@ -161,6 +163,13 @@ print("Items:", ", ".join(packed))
 assert fitness(best_pack) == OPTIMUM
 ```
 
+```{code-cell} python
+:tags: [remove-cell]
+# The text below quotes this count: 60 packs, then 59 new ones
+# in each of 150 generations (the elite pack is not scored again).
+assert history[-1][0] == 8910 and round(2**30 / 8910, -4) == 120_000
+```
+
 This run ends with a best possible pack. It scored 8,910 packs in total, about one in 120,000 of all possible packs.
 
 ## Example: Watching a Population Evolve
@@ -238,6 +247,7 @@ for name, results in [
 assert sum(value == OPTIMUM for value in genetic_results) == 17
 assert sum(value == OPTIMUM for value in random_results) == 0
 assert min(genetic_results) >= 0.98 * OPTIMUM
+assert round(sum(random_results) / len(random_results) / OPTIMUM, 2) == 0.80
 ```
 
 The genetic algorithm finds a best possible pack in 17 of 20 runs and comes within 2% of it in the other three. Random search never finds one and averages 80% of the best value. Random search improves quickly at first and then almost stops, because good packs are rare among random ones. The genetic algorithm keeps improving, because selection keeps breeding from the best packs found so far, and crossover and mutation build new candidates out of them.
@@ -249,7 +259,7 @@ Genetic algorithms gave AI a general-purpose way to search huge spaces where no 
 ## How This Differs from the Original
 
 - Holland chose parents with probability proportional to their fitness. This page uses tournament selection, a later method; Goldberg and Deb (1991) compared the two.
-- Keeping the best candidate unchanged from one generation to the next, called *elitism*, comes from De Jong's 1975 thesis, not from Holland's book.
+- Elitism, keeping the best candidate unchanged from one generation to the next, comes from De Jong's 1975 thesis, not from Holland's book.
 
 ## Sources
 

@@ -4,14 +4,14 @@ AI Timeline is a free website that teaches the history of artificial intelligenc
 
 ## What This Is
 
-The site is for curious readers who want to see how AI ideas actually work, not only read about them. You need no AI background. Reading the Python code helps, but every chapter explains its ideas in words and pictures first.
+The site is for curious readers who want to see how AI ideas actually work, not only read about them. You need no AI background. Reading the Python code helps, but every chapter explains its ideas in plain words before the code.
 
 Every chapter has the same parts:
 
 1. The idea, explained with one concrete example and real numbers.
 2. Short Python code that runs the idea, with its real output.
 3. An interactive panel that animates the idea: training a network, evolving a population, searching for a proof.
-4. Why the idea mattered, how this version differs from the original, and the primary sources.
+4. Why the idea mattered, how this version differs from the original (when it simplifies it), and the primary sources.
 
 ## Chapters
 

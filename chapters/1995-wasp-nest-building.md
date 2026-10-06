@@ -22,6 +22,8 @@ The lattice swarm model turns this into an algorithm:
 2. Agents fly from cube to cube at random.
 3. At each empty cube, an agent looks at the 26 cubes around it. If that pattern exactly matches one of its rules, it adds the rule's brick in the cube.
 
+As in the [Game of Life](1970-conways-game-of-life.md), every decision depends only on the neighboring cubes. Unlike Life, the agents move, and a brick, once placed, stays.
+
 A nest grows from a single starting brick, one rule match at a time. Theraulaz and Bonabeau found that most random rule sets produce shapeless clumps. The interesting ones are *coordinated*: each stage of the building creates the exact pattern that triggers the next stage, and nothing else. A coordinated rule set builds the same architecture every time, even though the agents move at random.
 
 ## Example: Rules as Code
@@ -90,11 +92,11 @@ TABLE = compile_rules(RULES)
 print(f"{len(RULES)} rules, {len(TABLE)} patterns after turning")
 ```
 
-The last rule is what makes the set coordinated. A new pedicel needs the whole 3 × 3 inner comb above it, so it cannot start until that comb is done.
+Each rule waits for a pattern that the stage before it leaves behind, so the stages happen in order: that is what makes the set coordinated. For example, the last rule needs the whole 3 × 3 inner comb above it, so a new pedicel cannot start until that part of the comb is done.
 
 ## Example: Building a Nest
 
-The world below is 15 × 15 cubes wide and 14 layers tall. A single pedicel hangs from the middle of the top layer, and 60 agents start in random cubes. At each step every agent moves to one of the six cubes next to it, then checks the rules. The random moves come from a random number generator started by a *seed*; the same seed always gives the same flights. The code builds five nests, with seeds 1 to 5.
+The world below is 15 × 15 cubes wide and 14 layers tall. A single pedicel hangs from the middle of the top layer, and 60 agents start in random cubes. At each step every agent picks one of the six cubes next to it and moves there (a move that would leave the world is skipped), then checks the rules. The random moves come from a random number generator started by a *seed*; the same seed always gives the same flights. The code builds five nests, with seeds 1 to 5.
 
 ```{code-cell} python
 import random
@@ -157,9 +159,11 @@ print(f"\nAll five nests are identical: {len(distinct) == 1}")
 # The text below quotes these results.
 assert len(distinct) == 1
 assert len(nests[1]) == 182 and describe(nests[1]) == [25] * 7
+# The lowest comb is on the bottom layer, z = 0: no room for another pedicel.
+assert min(z for (_, _, z), b in nests[1].items() if b != PEDICEL) == 0
 ```
 
-Each run moves the agents differently, and the last brick lands at a different step, but all five nests are the same: 7 combs of 25 bricks, each hanging from a pedicel under the middle of the comb above, 182 bricks in all. The panel at the end of the next section replays this build.
+Each run moves the agents differently, and the last brick lands at a different step, but all five nests are the same: 7 combs of 25 bricks, 182 bricks in all. The first comb hangs from the starting pedicel, and each other comb hangs from a pedicel under the middle of the comb above it. The nest stops at 7 combs because the lowest one sits on the bottom layer of the world, with no room below for another pedicel. The panel at the end of the next section replays this build.
 
 ```{code-cell} python
 :tags: [remove-cell]
@@ -208,6 +212,8 @@ print(f"\n{len(shapes)} different structures in 10 runs")
 :tags: [remove-cell]
 assert len(shapes) == 4
 assert all(len(describe(b)) == 1 and describe(b)[0] < 25 for b in eager_nests.values())
+sizes = [describe(b)[0] for b in eager_nests.values()]
+assert (min(sizes), max(sizes)) == (8, 11)
 
 data_directory = Path("../widgets/data")
 data_directory.mkdir(parents=True, exist_ok=True)
@@ -229,7 +235,7 @@ assert coordinated == nests[1] and eager == eager_nests[1]  # same runs as above
 }))
 ```
 
-In every run the colony stops inside the first comb, with 8 to 11 comb bricks, in 4 different broken shapes. One extra rule turned a reliable builder into one that depends on luck and always gets stuck. The panel replays both builds with seed 1: choose **Coordinated rules** or **One rule too many**, and turn the view to see the combs from other sides.
+In every run the colony stops inside the first comb, with 8 to 11 comb bricks, in 4 different broken shapes. One extra rule turned a reliable builder into one that got stuck in all 10 runs, in a shape that depends on where the agents happened to fly. The panel replays both builds with seed 1: choose **Coordinated rules** or **One rule too many**, and turn the view to see the combs from other sides.
 
 ```{anywidget} ../widgets/wasp-nest.mjs
 { "data": "wasp-nest.json" }
@@ -245,7 +251,6 @@ Lattice swarms showed that complex, species-specific architecture does not need 
 
 - Theraulaz and Bonabeau used rule sets found by exploring the space of possible rules, mostly on a hexagonal grid that resembles real comb cells. Their rule files are not freely available, so this page uses a rule set written for it on a cubic grid, as Bonabeau and colleagues did in 1994. It reproduces the Vespa-like design of stacked combs on single pedicels, not their exact nests.
 - Each rule is used in four turned copies, the approach Marcin Pilat found necessary when he reimplemented lattice swarms in 2006; the mirrored rim rules are written out by hand.
-- The agents and rules here are deterministic given a seed: each move is random, but the same seed always produces the same nest.
 
 ## Sources
 

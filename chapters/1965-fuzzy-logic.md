@@ -129,7 +129,7 @@ assert never_drops
 
 ## Example: Try the Controller
 
-The panel runs the controller in your browser and shows its three steps for one temperature at a time. Press **Play** to sweep from −10 °C to 60 °C, or drag the slider. The fan turns at the computed speed.
+The panel runs the controller in your browser, one temperature at a time, in three steps: how true each word is, how strongly each rule fires, and the weighted average. Press **Play** to sweep from −10 °C to 60 °C, or drag the slider. The fan turns at the computed speed.
 
 ```{code-cell} python
 :tags: [remove-cell]

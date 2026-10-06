@@ -12,7 +12,7 @@ They did not invent the underlying math. Seppo Linnainmaa described the same bac
 
 ## High-Level Ideas
 
-A single perceptron draws one straight line and puts each input on one side of it. *XOR* (exclusive or) outputs `1` when exactly one input is `1`:
+The [1957 perceptron chapter](1957-perceptron.md) showed that a single perceptron draws one straight line and puts each input on one side of it, so it cannot learn *XOR* (exclusive or). XOR outputs `1` when exactly one input is `1`:
 
 | `x1` | `x2` | XOR |
 | --- | --- | --- |
@@ -209,7 +209,7 @@ The code that runs this panel is in [chapters/1986-backpropagation.md](https://g
 
 ## Example: Training on XOR
 
-Training repeats that step for every example, over and over. One pass over all four XOR examples is an *epoch*. Training stops when the sum of squared errors over one epoch drops below 0.01, or after 10,000 epochs.
+Training repeats that step for every example, over and over. One pass over all four XOR examples is an *epoch*. Training stops when the sum of the squared errors `(t − y)²` over one epoch drops below 0.01 (this is the error `E` from above without the ½), or after 10,000 epochs.
 
 ```{code-cell} python
 def train(network, examples, learning_rate, max_epochs, target_error,
@@ -267,7 +267,7 @@ for seed in (1, 7):
         print(f"  {name:>8}: weights {weights}, bias {neuron['bias']:+.3f}")
 ```
 
-Everything else about the two runs is the same: the same network, the same four XOR examples, the same learning rate. Seed 1 learns XOR at epoch 3,390. Seed 7 never does: after 10,000 epochs it answers two cases correctly and the other two with about 0.49. The animation below replays both runs, showing every weight and bias every 10 epochs.
+Everything else about the two runs is the same: the same network, the same four XOR examples, the same learning rate. Seed 1 learns XOR at epoch 3,390. Seed 7 does not: after 10,000 epochs it answers two cases correctly and the other two with about 0.49. The animation below replays both runs, showing every weight and bias every 10 epochs.
 
 ```{code-cell} python
 :tags: [remove-input]
@@ -305,6 +305,11 @@ learns, stuck = record_training(seed=1), record_training(seed=7)
 # The recorded seed-1 run must end exactly where the run above ended.
 assert learns["stopped_at"] == stopped_at
 assert learns["snapshots"][-1]["layers"] == xor_network
+# The text above: seed 7 gets (0, 0) and (0, 1) right, and answers about 0.49 for the other two.
+assert stuck["stopped_at"] is None
+stuck_outputs = stuck["snapshots"][-1]["outputs"]
+assert stuck_outputs[0] < 0.5 <= stuck_outputs[1]
+assert [round(value, 2) for value in stuck_outputs[2:]] == [0.49, 0.49]
 
 for run in (learns, stuck):
     outputs = ", ".join(f"{value:.3f}" for value in run["snapshots"][-1]["outputs"])
@@ -442,6 +447,7 @@ digit_epochs = train(
 )
 print(f"{len(digit_examples)} training images.")
 print(f"Error below 0.05 after {digit_epochs} epochs.")
+assert digit_epochs is not None  # training reached the target
 
 for digit, pattern in DIGITS.items():
     assert read_digit(digit_reader, pixels(pattern)) == digit
@@ -509,8 +515,7 @@ print(f"Recognized number: {recognized}")
 assert recognized == "1986"
 ```
 
-The panel below runs the trained network in your browser. Draw a digit, or start from one of the ten patterns and flip some pixels. The middle panel shows the 16 hidden neurons. Each small image is that neuron's 35 input weights laid out on the 5-by-7 grid: blue pixels push the neuron to fire, orange pixels hold it back.
-
+The panel below runs the trained network in your browser. Draw a digit, or start from one of the ten patterns and flip some pixels. The middle card shows the 16 hidden neurons. Each small image is that neuron's 35 input weights laid out on the 5-by-7 grid: blue pixels push the neuron to fire, orange pixels hold it back.
 
 ```{code-cell} python
 :tags: [remove-cell]

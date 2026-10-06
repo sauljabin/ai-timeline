@@ -276,6 +276,7 @@ for name, alpha in (("with pheromone", 1), ("without pheromone", 0)):
 assert sorted(summary["with pheromone"]) == [444, 444, 445, 445, 446,
                                              446, 450, 452, 452, 456]
 assert max(summary["with pheromone"]) < min(summary["without pheromone"])
+assert sum(summary["without pheromone"]) == 4805  # mean 480.5
 ```
 
 With pheromone, every run beats every run without it: the mean drops from 480.5 to 448.0. The colony learns which roads belong to good tours. No run reaches the optimum of 426, though. The best runs end 4.2% above it, because after a while most pheromone sits on a few roads and the ants stop exploring. Later versions, described below, fixed much of that.

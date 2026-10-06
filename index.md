@@ -2,7 +2,7 @@
 
 This site teaches the history of artificial intelligence by running it. Each chapter takes one milestone, explains the idea with a concrete example, runs a small working version in Python, and lets you watch or play with it in an interactive panel.
 
-You need no AI background. The code is short and commented, but every chapter explains its ideas in words and pictures first, so you can also read around it.
+You need no AI background. The code is short and commented, but every chapter explains its ideas in plain words before the code, so you can also read around it.
 
 ## Chapters
 
