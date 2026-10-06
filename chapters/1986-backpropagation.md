@@ -49,7 +49,7 @@ With real numbers: the output neuron answers `y = 0.8` but should answer `t = 1`
 
 ## Example: One Training Step
 
-This example runs one training step on the 2-2-1 network, one formula at a time, and prints every number. In the code, a network is a list of layers, and each neuron is a dictionary with its `weights` and its `bias`. The starting weights are random numbers between −1 and 1, from a fixed seed so every run is the same.
+This example runs one training step on the 2-2-1 network, one formula at a time, and prints every number. In the code, a network is a list of layers, and each neuron is a dictionary with its `weights` and its `bias`. The starting weights are random numbers between −1 and 1. Python makes them with a random number generator, and the number that starts the generator is called the *seed*. The same seed always produces the same numbers, so this page gives the same results every time it runs. This example uses seed 1.
 
 ```{code-cell} python
 import math
@@ -256,7 +256,18 @@ The output is a number between 0 and 1, read as `1` when it is at least 0.5. It 
 
 ## Example: Watching XOR Being Learned
 
-The animation below replays two training runs, showing every weight and bias every 10 epochs: seed 1, the run above, and seed 7, which starts from different random weights.
+A different seed gives different starting weights. Here are the starting weights for seed 1, the run above, and for seed 7:
+
+```{code-cell} python
+for seed in (1, 7):
+    start = new_network([2, 2, 1], seed=seed)
+    print(f"seed {seed}:")
+    for name, neuron in zip(NAMES, start[0] + start[1]):
+        weights = ", ".join(f"{w:+.3f}" for w in neuron["weights"])
+        print(f"  {name:>8}: weights {weights}, bias {neuron['bias']:+.3f}")
+```
+
+Everything else about the two runs is the same: the same network, the same four XOR examples, the same learning rate. Seed 1 learns XOR at epoch 3,390. Seed 7 never does: after 10,000 epochs it answers two cases correctly and the other two with about 0.49. The animation below replays both runs, showing every weight and bias every 10 epochs.
 
 ```{code-cell} python
 :tags: [remove-input]
@@ -320,7 +331,7 @@ The code that runs this panel is in [chapters/1986-backpropagation.md](https://g
 
 ## Example: Not Every Start Works
 
-Seed 7 never learns XOR. That is not a bug in the code. The starting weights decide where gradient descent begins, and from some starts it cannot get to a solution in practice. The code below trains 50 networks, one per seed from 1 to 50, with the same 10,000-epoch budget.
+Seed 7 is not special. It is simply the first of the seeds that fail, and failing is not a bug in the code. The starting weights decide where gradient descent begins, and from some starts it cannot get to a solution in practice. The code below trains 50 networks, one per seed from 1 to 50, with the same 10,000-epoch budget.
 
 ```{code-cell} python
 failed = {}
@@ -343,6 +354,7 @@ for seed, outputs in failed.items():
         assert unsure or int(y >= 0.5) == desired
 
 assert len(failed) == 10
+assert list(failed)[0] == 7  # seed 7 is the first one that fails
 ```
 
 Every failed run ends the same way: two cases are right, and the other two outputs are within 0.05 of 0.5. Training longer does not help. Continuing seed 7 for 100,000 epochs gives:

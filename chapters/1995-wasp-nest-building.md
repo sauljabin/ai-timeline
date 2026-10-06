@@ -94,7 +94,7 @@ The last rule is what makes the set coordinated. A new pedicel needs the whole 3
 
 ## Example: Building a Nest
 
-The world below is 15 × 15 cubes wide and 14 layers tall. A single pedicel hangs from the middle of the top layer, and 60 agents start in random cubes. At each step every agent moves to one of the six cubes next to it, then checks the rules.
+The world below is 15 × 15 cubes wide and 14 layers tall. A single pedicel hangs from the middle of the top layer, and 60 agents start in random cubes. At each step every agent moves to one of the six cubes next to it, then checks the rules. The random moves come from a random number generator started by a *seed*; the same seed always gives the same flights. The code builds five nests, with seeds 1 to 5.
 
 ```{code-cell} python
 import random

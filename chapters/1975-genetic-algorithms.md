@@ -143,7 +143,7 @@ assert 0.7 < too_heavy_share[0.5] < 0.8 and too_heavy_share[0.15] < 0.01
 
 With a 50% chance per item, about three packs in four are too heavy. With 15%, almost none are, so the first population starts with valid packs to improve.
 
-Run the genetic algorithm once with seed 1975:
+Every random choice in `evolve` comes from a random number generator, and the number that starts it is called the *seed*. The same seed always gives the same run, so this page shows the same results every time it runs. Run the genetic algorithm once with seed 1975:
 
 ```{code-cell} python
 best_pack, history = evolve(seed=1975)

@@ -71,7 +71,7 @@ def cross_bridge(r, seed, ants=1000):
     return choices
 ```
 
-Following Dorigo and Stützle, the next cell runs the model 1,000 times for each bridge and counts how ants 501 to 1,000 split between the branches. With equal branches, "short" just names one of the two.
+Following Dorigo and Stützle, the next cell runs the model 1,000 times for each bridge and counts how ants 501 to 1,000 split between the branches. Each run uses a different *seed*, the number that starts Python's random number generator: seeds 0 to 999. A seed always gives the same run, so the results below are the same every time this page runs. With equal branches, "short" just names one of the two.
 
 ```{code-cell} python
 def short_share(r, seed):
