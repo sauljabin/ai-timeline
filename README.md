@@ -23,6 +23,8 @@ Every chapter has the same parts:
 | 1972 | [Prolog](chapters/1972-prolog.md): facts, rules, queries, search trees, and how statement order changes the search. |
 | 1975 | [Genetic algorithms](chapters/1975-genetic-algorithms.md): a 30-item knapsack, checked against the exact answer and random search. |
 | 1986 | [Backpropagation](chapters/1986-backpropagation.md): one training step in slow motion, XOR training replay, and a live digit reader. |
+| 1991 | [Ant colony optimization](chapters/1991-ant-colony-optimization.md): the double bridge model and Ant System on the 51-city `eil51` problem. |
+| 1995 | [Wasp nest building](chapters/1995-wasp-nest-building.md): lattice swarms that build a nest from local rules, and why coordination matters. |
 
 ## How the site is checked
 

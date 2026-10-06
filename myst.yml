@@ -18,6 +18,8 @@ project:
         - file: chapters/1972-prolog.md
         - file: chapters/1975-genetic-algorithms.md
         - file: chapters/1986-backpropagation.md
+        - file: chapters/1991-ant-colony-optimization.md
+        - file: chapters/1995-wasp-nest-building.md
 
 site:
   template: book-theme

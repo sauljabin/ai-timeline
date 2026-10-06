@@ -14,6 +14,8 @@ You need no AI background. The code is short and commented, but every chapter ex
 | 1972 | [Prolog](chapters/1972-prolog.md) | Watch Prolog's search tree grow as it looks for answers. |
 | 1975 | [Genetic algorithms](chapters/1975-genetic-algorithms.md) | Watch a population of packing lists evolve toward the best pack. |
 | 1986 | [Backpropagation](chapters/1986-backpropagation.md) | Follow one training step in slow motion, watch a network learn `XOR`, then draw digits for it to read. |
+| 1991 | [Ant colony optimization](chapters/1991-ant-colony-optimization.md) | Watch ants pick a branch of a bridge, then watch pheromone trails converge on a short tour of 51 cities. |
+| 1995 | [Wasp nest building](chapters/1995-wasp-nest-building.md) | Watch simulated wasps build a nest in 3D from local rules, and see one extra rule break it. |
 
 ## Run It Yourself
 

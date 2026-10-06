@@ -297,14 +297,18 @@ export function prepareCanvas(canvas, width, height) {
   return context;
 }
 
-function parseHex(color) {
-  const value = color.replace("#", "");
-  return [0, 2, 4].map((start) => parseInt(value.slice(start, start + 2), 16));
+// Accepts "#rrggbb" or "rgb(r, g, b)", so mix() results can be mixed again.
+function parseColor(color) {
+  if (color.startsWith("#")) {
+    const value = color.slice(1);
+    return [0, 2, 4].map((start) => parseInt(value.slice(start, start + 2), 16));
+  }
+  return color.match(/[\d.]+/g).slice(0, 3).map(Number);
 }
 
 export function mix(colorA, colorB, amount) {
-  const a = parseHex(colorA);
-  const b = parseHex(colorB);
+  const a = parseColor(colorA);
+  const b = parseColor(colorB);
   const channels = a.map((channel, index) => Math.round(channel + (b[index] - channel) * amount));
   return `rgb(${channels.join(", ")})`;
 }
